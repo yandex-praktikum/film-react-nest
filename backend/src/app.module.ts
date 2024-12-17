@@ -19,7 +19,6 @@ import { OrderSchema } from './order/schemas/order.schema';
     }),
     ServeStaticModule.forRoot({
       rootPath: path.join(__dirname, '..', 'public'),
-      serveRoot: '/content/afisha',
     }),
     MongooseModule.forRoot(
       process.env.DATABASE_URL || 'mongodb://localhost:27017/films',
