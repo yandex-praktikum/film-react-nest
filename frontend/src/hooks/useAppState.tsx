@@ -44,6 +44,7 @@ export function useAppState() {
             phone: state.contacts.phone,
             tickets: state.basket
         }).then(() => {
+            console.log('clearing')
             dispatch({ type: 'clearBasket' });
             dispatch({ type: 'openModal', payload: 'success' });
         });
