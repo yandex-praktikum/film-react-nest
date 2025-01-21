@@ -21,8 +21,8 @@ export class Schedule {
   @Column('float')
   price: number;
 
-  @Column('simple-array')
-  taken: string[];
+  @Column()
+  taken: string;
 
   @ManyToOne(() => Film, (film) => film.schedule, { onDelete: 'CASCADE' })
   film: Film;

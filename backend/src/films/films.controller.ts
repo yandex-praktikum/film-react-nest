@@ -9,7 +9,6 @@ export class FilmsController {
   @Get()
   async findAll() {
     const allFilms = await this.filmsService.findAll();
-    console.log(allFilms, 'here are films')
     return { items: allFilms };
   }
 

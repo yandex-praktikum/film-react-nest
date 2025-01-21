@@ -26,22 +26,20 @@ export class OrderService {
       if (!film) {
         throw new NotFoundException(`Film with ID ${filmId} not found`);
       }
-      console.log(film, 'here is film');
 
       const session = film.schedule.find((s) => s.id === sessionId);
       if (!session) {
         throw new NotFoundException(`Session with ID ${sessionId} not found`);
       }
-      console.log(session, 'here is session');
 
       const seatId = `${row}:${seat}`;
       if (session.taken.includes(seatId)) {
         throw new ConflictException(`Seat ${seatId} is already taken`);
       }
-
-      session.taken.push(seatId);
-      console.log(session, 'here is session 2.0')
-      console.log(film, 'here is film 2.0')
+      const seats = session.taken.split(',');
+      seats.push(seatId);
+      const takenSeats = seats.join(',');
+      session.taken = takenSeats;
       this.filmsService.saveFilm(film);
       await this.filmsService.findAll();
     }
